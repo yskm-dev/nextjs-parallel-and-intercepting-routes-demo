@@ -11,13 +11,13 @@ export function generateStaticParams() {
 export const dynamicParams = false;
 
 type Props = {
-  params: {
+  params: Promise<{
     id: string;
-  };
+  }>;
 }
 
 export default async function Page({ params }: Props) {
-  const { id } = params;
+  const { id } = await params;
   const photo: Photo | undefined = getPhotoById(id);
   if (!photo) {
     return <div>Photo not found</div>;
