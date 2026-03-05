@@ -13,7 +13,7 @@
   },
   "dependencies": {
     "gsap": "^3.14.2",
-    "next": "^15.5.2",
+    "next": "^16",
     "react": "19.2.3",
     "react-dom": "19.2.3"
   },
@@ -23,7 +23,7 @@
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "eslint": "^9",
-    "eslint-config-next": "^15.5.2",
+    "eslint-config-next": "^16",
     "typescript": "^5",
     "wrangler": "^4.70.0"
   }
