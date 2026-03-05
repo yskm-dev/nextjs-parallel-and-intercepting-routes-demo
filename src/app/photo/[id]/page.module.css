@@ -1,0 +1,134 @@
+.container {
+  min-height: 100dvh;
+  background-color: var(--color-bg);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 80px 40px 60px;
+}
+
+.image {
+  width: 100%;
+  max-width: 990px;
+  height: auto;
+  display: block;
+  box-shadow:
+    0 20px 60px rgba(0, 0, 0, 0.6),
+    0 4px 16px rgba(0, 0, 0, 0.4);
+}
+
+.info {
+  width: 100%;
+  max-width: 990px;
+  padding: 28px 0 0;
+}
+
+.title {
+  font-size: 2rem;
+  font-weight: 300;
+  letter-spacing: 0.03em;
+  color: var(--color-text);
+  margin-bottom: 12px;
+}
+
+.description {
+  font-size: 13px;
+  line-height: 1.8;
+  color: var(--color-text-muted);
+  margin-bottom: 0;
+}
+
+.footer {
+  width: 100%;
+  max-width: 990px;
+  margin-top: 48px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  padding: 0;
+}
+
+.navigation {
+  display: flex;
+  gap: 24px;
+}
+
+.prev a,
+.next a {
+  font-size: 11px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--color-text-muted);
+  position: relative;
+  display: inline-block;
+  transition: color var(--transition-base);
+}
+
+/* Arrow prefix */
+.prev a::before {
+  content: "← ";
+}
+
+.next a::before {
+  content: "→ ";
+}
+
+/* Slide underline */
+.prev a::after,
+.next a::after {
+  content: "";
+  position: absolute;
+  bottom: -3px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background-color: var(--color-accent);
+  transition: width 0.3s var(--ease-out-expo);
+}
+
+.prev a:hover,
+.next a:hover {
+  color: var(--color-text);
+}
+
+.prev a:hover::after,
+.next a:hover::after {
+  width: 100%;
+}
+
+.back a {
+  font-size: 11px;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--color-text-faint);
+  position: relative;
+  display: inline-block;
+  transition: color var(--transition-base);
+}
+
+.back a::after {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background-color: var(--color-text-muted);
+  transition: width 0.3s var(--ease-out-expo);
+}
+
+.back a:hover {
+  color: var(--color-text-muted);
+}
+
+.back a:hover::after {
+  width: 100%;
+}
+
+@media (max-width: 600px) {
+  .container {
+    padding: 48px 20px 40px;
+  }
+}

@@ -1,0 +1,40 @@
+.container {
+  display: grid;
+  grid-template-rows: auto 1fr;
+  place-content: start;
+  height: 100%;
+  background-color: var(--color-surface);
+  color: var(--color-text);
+}
+
+.image {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.info {
+  padding: 28px 32px 40px;
+}
+
+.title {
+  font-size: 1.5rem;
+  font-weight: 300;
+  letter-spacing: 0.03em;
+  color: var(--color-text);
+  margin-bottom: 10px;
+}
+
+.description {
+  font-size: 13px;
+  line-height: 1.8;
+  color: var(--color-text-muted);
+  margin-bottom: 0;
+}
+
+.footer {
+  margin-top: 24px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+}
