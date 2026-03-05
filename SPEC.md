@@ -148,7 +148,7 @@ type Photo = {
 
 ## 9. フルページ詳細仕様
 
-**`src/app/photo/[id]/page.tsx`** — Server Component
+**`src/app/photo/[id]/page.tsx`** — Static Component（SSG）
 
 | 要素 | 内容 |
 |------|------|
@@ -156,6 +156,20 @@ type Photo = {
 | タイトル・説明 | `Photo` データから表示 |
 | Prev/Next | 前後の Photo へのリンク（存在する場合のみ表示） |
 | Back | `/gallery` へ戻るリンク |
+
+### SSG 設定
+
+```ts
+export function generateStaticParams() {
+  return photos.map((photo) => ({ id: photo.id }));
+}
+
+export const dynamicParams = false;
+```
+
+- `generateStaticParams` により、ビルド時に `/photo/1` 〜 `/photo/9` を静的生成する
+- `dynamicParams = false` により、リスト外の ID へのアクセスは 404 になる
+- モーダル用インターセプトルート `gallery/@modal/(..)photo/[id]/page.tsx` にも同じ設定を適用している
 
 ---
 

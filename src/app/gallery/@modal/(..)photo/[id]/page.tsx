@@ -1,8 +1,14 @@
 import { Modal } from "@/components/Modal";
 import type { Photo } from "@/lib/photos";
-import { getPhotoById } from "@/lib/photos";
+import { getPhotoById, photos } from "@/lib/photos";
 import Image from "next/image";
 import css from "./page.module.css";
+
+export function generateStaticParams() {
+  return photos.map((photo) => ({ id: photo.id }));
+}
+
+export const dynamicParams = false;
 
 type Props = {
   params: {
@@ -11,7 +17,7 @@ type Props = {
 }
 
 export default async function Page({ params }: Props) {
-  const { id } = await params;
+  const { id } = params;
   const photo: Photo | undefined = getPhotoById(id);
   if (!photo) {
     return <div>Photo not found</div>;
