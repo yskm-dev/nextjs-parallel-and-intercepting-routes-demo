@@ -43,9 +43,7 @@ const nextConfig: NextConfig = {
   images: {
     unoptimized: true, // Cloudflare では Next.js の Image Optimization が使えないため必須
   },
-  eslint: {
-    ignoreDuringBuilds: true, // ビルド時の ESLint エラーでビルドが止まらないようにする
-  },
+  // eslint オプションは Next.js 16 で削除された（next build が ESLint を実行しなくなったため不要）
 };
 
 export default nextConfig;
@@ -145,7 +143,7 @@ export function generateStaticParams() {
 // 定義したパス以外の動的ルートを無効化
 export const dynamicParams = false;
 
-// Next.js 15 では params は Promise 型で受け取る必要がある
+// Next.js 15 以降では params は Promise 型で受け取る必要がある
 type Props = {
   params: Promise<{ id: string }>;
 };
@@ -156,15 +154,15 @@ export default async function Page({ params }: Props) {
 }
 ```
 
-### Parallel Routes の layout での注意点（Next.js 15）
+### Parallel Routes の layout での注意点
 
-Next.js 15 では、Parallel Routes のスロット props はオプショナルにできません。
+Next.js 15 以降では、Parallel Routes のスロット props はオプショナルにできません。
 
 ```tsx
 // src/app/gallery/layout.tsx
 export default function Layout({
   children,
-  modal, // ← Next.js 15 では modal?: ではなく modal: （必須）にすること
+  modal, // ← modal?: ではなく modal: （必須）にすること
 }: {
   children: React.ReactNode;
   modal: React.ReactNode; // optional にすると型エラーになる
@@ -229,7 +227,7 @@ import nextTs from "eslint-config-next/typescript.js";
 
 ### TypeScript: `params` の `await` 警告
 
-**原因**: Next.js 15 では `params` は `Promise` 型。
+**原因**: Next.js 15 以降では `params` は `Promise` 型。
 **対処**: 型を `Promise<{ id: string }>` にして `await` を使う。
 
 ```tsx
@@ -237,7 +235,7 @@ import nextTs from "eslint-config-next/typescript.js";
 type Props = { params: { id: string } };
 const { id } = params;
 
-// OK（Next.js 15）
+// OK（Next.js 15 以降）
 type Props = { params: Promise<{ id: string }> };
 const { id } = await params;
 ```
@@ -258,8 +256,6 @@ OpenNext のビルド成果物はリポジトリに含めないよう `.gitignor
 
 | パッケージ | 動作確認済みバージョン |
 |---|---|
-| `next` | `^15.5.x` |
+| `next` | `^16.x` |
 | `@opennextjs/cloudflare` | `^1.17.x` |
 | `wrangler` | `^4.70.x` |
-
-> `next@16.x` 以降は `@opennextjs/cloudflare` の対応状況を確認すること。
