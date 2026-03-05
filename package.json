@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "build:cf": "opennextjs-cloudflare build",
+    "build:cf": "opennextjs-cloudflare build && node -e \"const fs=require('fs');const src='.open-next/cache';const dst='.open-next/assets/cdn-cgi/_next_cache';fs.cpSync(src,dst,{recursive:true});console.log('Cache copied to static assets')\"",
     "deploy:cf": "opennextjs-cloudflare deploy",
     "preview": "opennextjs-cloudflare build && wrangler dev",
     "start": "next start",
